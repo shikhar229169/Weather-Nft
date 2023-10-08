@@ -1,14 +1,13 @@
-const { ethers, network } = require("hardhat")
 const { networkConfig } = require("../helper-hardhat-config")
 const { SecretsManager, createGist } = require("@chainlink/functions-toolkit");
 require("dotenv").config()
 
 async function getSecrets(secrets) {
-    const chainId = network.config.chainId
+    const chainId = hre.network.config.chainId
+    
+    const provider = new hre.ethers.providers.JsonRpcProvider(network.config.url);
 
-    const provider = new ethers.providers.JsonRpcProvider(network.config.url);
-
-    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY);
+    const wallet = new hre.ethers.Wallet(process.env.PRIVATE_KEY);
     const signer = wallet.connect(provider);
     
     const secretsManager = new SecretsManager({

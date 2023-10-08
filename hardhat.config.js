@@ -6,6 +6,7 @@ require("hardhat-contract-sizer");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
 require("./tasks/change-source-code")
+require("./tasks/change-secrets")
 require("dotenv").config();
 
 PRIVATE_KEY = process.env.PRIVATE_KEY;

@@ -1,3 +1,4 @@
+const hre = require("hardhat")
 const { ethers, network } = require("hardhat")
 const { networkConfig } = require("../helper-hardhat-config")
 const { getSecrets } = require("../utils/SecretsGenerator")
@@ -11,7 +12,7 @@ async function main() {
 
     const router = networkConfig[chainId].router
     const sourceCode = fs.readFileSync("./FunctionsSourceCode/GetWeather.js").toString()
-    const encryptedSecrets = await getSecrets(secrets)
+    const encryptedSecrets = await getSecrets(secrets, hre)
     const subId = networkConfig[chainId].functionsSubId
     const gasLimit = networkConfig[chainId].functionsGasLimit
     const donId = networkConfig[chainId].donId
